@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: DemoApp
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demoapp?autoReconnect=true&useCompression=true&serverTimezone=Europe/London&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: ""
+  jpa:
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+server:
+  shutdown:
+    graceful: true
+  http2:
+    enabled: true
+  servlet:
+    context-path: /
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  compression:
+    enabled: true
+    mime-types: text/html, text/xml, application/xml, application/json, application/javascript, text/css, application/x-javascript, text/plain, image/jpeg, image/png, image/gif, image/webp
+    min-response-size: 1024
+  tomcat:
+    basedir: /Vipul/Workspace/DemoApp/target/tomcat
+    keep-alive-timeout: 3m
+logging:
+  file:
+    name: ./target/logs/application.log
+    size: 5MB
+    total-size-cap: 100MB
+    max-history: 30
+  level:
+    root: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;MODE=MySQL
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate.format_sql: true
+    show-sql: true
+  h2:
+    console:
+      enabled: true
