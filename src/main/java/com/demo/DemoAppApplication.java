@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@OpenAPIDefinition
+@OpenAPIDefinition // http://localhost:8080/swagger-ui/index.html
 @Slf4j
 public class DemoAppApplication {
 
